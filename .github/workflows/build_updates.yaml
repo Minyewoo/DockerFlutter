@@ -47,17 +47,17 @@ jobs:
       - name: Build and push image
         run: |
           docker build \
-            -t fischerscode/flutter:$(echo ${{ join(matrix.tags, ' | tr + _) -t fischerscode/flutter:$(echo ') }} | tr + _) \
+            -t nyaaneet/flutter:$(echo ${{ join(matrix.tags, ' | tr + _) -t nyaaneet/flutter:$(echo ') }} | tr + _) \
             --build-arg=flutterVersion=${{ matrix.channel }} \
-            --cache-from=type=registry,ref=fischerscode/flutter-cache:$(echo ${{ matrix.channel }} | tr + _) \
-            --cache-to=type=registry,ref=fischerscode/flutter-cache:$(echo ${{ matrix.channel }} | tr + _),mode=max \
+            --cache-from=type=registry,ref=nyaaneet/flutter-cache:$(echo ${{ matrix.channel }} | tr + _) \
+            --cache-to=type=registry,ref=nyaaneet/flutter-cache:$(echo ${{ matrix.channel }} | tr + _),mode=max \
             --push \
             --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x \
             .
       - name: Build and push sudo image
         run: |
           docker build \
-            -t fischerscode/flutter-sudo:$(echo ${{ join(matrix.tags, ' | tr + _) -t fischerscode/flutter-sudo:$(echo ') }} | tr + _) \
+            -t nyaaneet/flutter-sudo:$(echo ${{ join(matrix.tags, ' | tr + _) -t nyaaneet/flutter-sudo:$(echo ') }} | tr + _) \
             --build-arg=flutterVersion=${{ matrix.channel }} \
             --push \
             --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x \
